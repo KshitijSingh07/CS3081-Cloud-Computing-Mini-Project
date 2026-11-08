@@ -1,0 +1,3 @@
+{"id": "C0002", "text": "i need a reminder at two hundred every day to check on my mother", "teacher_raw": "{\n  \"intent\": \"calendar_set\",\n  \"date\": \"every day\",\n  \"time\": \"two hundred\",\n  \"place\": null\n}"}
+{"id": "C0004", "error": "RuntimeError: teacher failed after 4 attempts: label date is not copied from the command", "text": "is my calendar free for thursday"}
+{"id": "C0006", "text": "is my schedule free today", "teacher_raw": "{\n  \"intent\": \"calendar_query\",\n  \"date\": \"today\",\n  \"time\": null,\n  \"place\": null\n}"}

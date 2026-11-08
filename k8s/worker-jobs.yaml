@@ -1,0 +1,71 @@
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: teacher-shard-0
+  namespace: pipeline
+spec:
+  template:
+    spec:
+      restartPolicy: Never
+      containers:
+        - name: worker
+          image: teacher-worker:local
+          imagePullPolicy: IfNotPresent
+          env:
+            - name: SHARD_INDEX
+              value: "0"
+            - name: SHARD_COUNT
+              value: "2"
+            - name: READ_FROM_S3
+              value: "1"
+            - name: UPLOAD_SHARDS
+              value: "1"
+            - name: DATA_BUCKET
+              value: datasets
+            - name: COMMANDS_KEY
+              value: commands_pool.jsonl
+            - name: S3_ENDPOINT
+              value: http://seaweedfs.data.svc.cluster.local:8333
+            - name: OLLAMA_URL
+              value: http://host.docker.internal:11434
+            - name: TEACHER_MODEL
+              value: phi3.5
+          envFrom:
+            - secretRef:
+                name: object-store-credentials
+---
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: teacher-shard-1
+  namespace: pipeline
+spec:
+  template:
+    spec:
+      restartPolicy: Never
+      containers:
+        - name: worker
+          image: teacher-worker:local
+          imagePullPolicy: IfNotPresent
+          env:
+            - name: SHARD_INDEX
+              value: "1"
+            - name: SHARD_COUNT
+              value: "2"
+            - name: READ_FROM_S3
+              value: "1"
+            - name: UPLOAD_SHARDS
+              value: "1"
+            - name: DATA_BUCKET
+              value: datasets
+            - name: COMMANDS_KEY
+              value: commands_pool.jsonl
+            - name: S3_ENDPOINT
+              value: http://seaweedfs.data.svc.cluster.local:8333
+            - name: OLLAMA_URL
+              value: http://host.docker.internal:11434
+            - name: TEACHER_MODEL
+              value: phi3.5
+          envFrom:
+            - secretRef:
+                name: object-store-credentials

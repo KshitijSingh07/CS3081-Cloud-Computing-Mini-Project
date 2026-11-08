@@ -1,0 +1,14 @@
+{
+  "container_image": "chrislusf/seaweedfs:3.80",
+  "endpoint": "http://127.0.0.1:8333",
+  "buckets": [
+    "datasets",
+    "models"
+  ],
+  "object": "s3://datasets/commands_pool.jsonl",
+  "object_size_bytes": 197541,
+  "download_size_bytes": 197541,
+  "source_sha256": "3470398860500fabcf360debda8fb0e7a8a6ef9f552bc0341b5f3648e335f29a",
+  "download_sha256": "3470398860500fabcf360debda8fb0e7a8a6ef9f552bc0341b5f3648e335f29a",
+  "download_matches_original": true
+}

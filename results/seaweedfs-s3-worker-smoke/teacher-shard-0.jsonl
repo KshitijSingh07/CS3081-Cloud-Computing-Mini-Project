@@ -1,0 +1,1 @@
+{"id": "C0001", "text": "do i have any meetings scheduled the weekend after next", "teacher_raw": "{\n  \"intent\": \"calendar_query\",\n  \"date\": \"the weekend after next\",\n  \"time\": null,\n  \"place\": null\n}"}

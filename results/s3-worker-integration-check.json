@@ -1,0 +1,11 @@
+{
+  "worker_s3_read": "passed",
+  "worker_s3_upload": "passed",
+  "source_bucket_key": "s3://datasets/commands_pool.jsonl",
+  "uploaded_shard_key": "s3://datasets/teacher/shard-0.jsonl",
+  "records_in_smoke_shard": 1,
+  "shard_count_for_smoke": 3000,
+  "teacher_inference": "reused genuine saved C0001 teacher label; no fabricated label",
+  "original_dataset_sha256_unchanged": true,
+  "remote_output_matches_local": true
+}

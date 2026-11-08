@@ -1,0 +1,9 @@
+{
+  "pool_records": 3000,
+  "pool_unique_ids": 3000,
+  "validation_records": 100,
+  "validation_unique_ids": 100,
+  "pool_validation_id_overlap": 0,
+  "pool_sha256": "3470398860500fabcf360debda8fb0e7a8a6ef9f552bc0341b5f3648e335f29a",
+  "validation_sha256": "707739170f96f103cbcc41485f92cc4ddf4af903c3939ff717d1f8ccb884bd11"
+}

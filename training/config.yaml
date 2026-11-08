@@ -1,0 +1,9 @@
+seed: 42
+model_name: EleutherAI/pythia-70m
+learning_rate: 0.00005
+batch_size: 1
+gradient_accumulation_steps: 4
+epochs: 2
+max_sequence_length: 192
+max_train_examples: 1500
+output_dir: models/v1

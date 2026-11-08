@@ -1,0 +1,13 @@
+{"id": "C0001", "text": "do i have any meetings scheduled the weekend after next", "teacher_raw": "{\n  \"intent\": \"calendar_query\",\n  \"date\": \"the weekend after next\",\n  \"time\": null,\n  \"place\": null\n}"}
+{"id": "C0003", "text": "remind me of the meeting on tuesday", "teacher_raw": "{\n  \"intent\": \"calendar_query\",\n  \"date\": \"tuesday\",\n  \"time\": null,\n  \"place\": null\n}"}
+{"id": "C0005", "text": "do i have meeting with steve this week", "teacher_raw": "{\n  \"intent\": \"calendar_query\",\n  \"date\": \"this week\",\n  \"time\": null,\n  \"place\": null\n}"}
+{"id": "C0007", "text": "remind me of my meeting tomorrow ten in the morning", "teacher_raw": "{\n  \"intent\": \"calendar_set\",\n  \"date\": \"tomorrow\",\n  \"time\": \"ten in the morning\",\n  \"place\": null\n}"}
+{"id": "C0009", "text": "clear calendar events all", "teacher_raw": "{\n  \"intent\": \"calendar_remove\",\n  \"date\": null,\n  \"time\": null,\n  \"place\": null\n}"}
+{"id": "C0011", "text": "google do i have any appointments on my calendar for friday", "teacher_raw": "{\n  \"intent\": \"calendar_query\",\n  \"date\": \"friday\",\n  \"time\": null,\n  \"place\": null\n}"}
+{"id": "C0013", "text": "set alarm for tomorrow at two pm", "teacher_raw": "{\n  \"intent\": \"alarm_set\",\n  \"date\": \"tomorrow\",\n  \"time\": \"two pm\",\n  \"place\": null\n}"}
+{"id": "C0015", "text": "olly can you remind me about the gym class in two hours", "teacher_raw": "{\n  \"intent\": \"calendar_query\",\n  \"date\": null,\n  \"time\": \"in two hours\",\n  \"place\": \"gym class\"\n}"}
+{"id": "C0017", "text": "it's my mother's birthday today olly send me a notification every year on this date", "teacher_raw": "{\n  \"intent\": \"calendar_set\",\n  \"date\": \"today\",\n  \"time\": null,\n  \"place\": null\n}"}
+{"id": "C0019", "text": "what's the weather for the entire week", "teacher_raw": "{\n  \"intent\": \"weather_query\",\n  \"date\": null,\n  \"time\": null,\n  \"place\": null\n}"}
+{"id": "C0021", "text": "what is the temperature right now", "teacher_raw": "{\n  \"intent\": \"weather_query\",\n  \"date\": null,\n  \"time\": null,\n  \"place\": null\n}"}
+{"id": "C0023", "text": "set an alarm for me for tomorrow at seven pm", "teacher_raw": "{\n  \"intent\": \"alarm_set\",\n  \"date\": \"tomorrow\",\n  \"time\": \"seven pm\",\n  \"place\": null\n}"}
+{"id": "C0025", "text": "what is happening", "teacher_raw": "{\n  \"intent\": \"calendar_query\",\n  \"date\": null,\n  \"time\": null,\n  \"place\": null\n}"}

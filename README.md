@@ -1,0 +1,1 @@
+Copy commands_pool.jsonl, validation.jsonl, schema.json, rate_card.json, and the instructor tools/ directory from your issued student_kit. Do not fabricate or substitute the validation set. The actual dataset files are intentionally not fabricated in this archive.

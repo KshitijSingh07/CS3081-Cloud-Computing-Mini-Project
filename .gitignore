@@ -1,0 +1,15 @@
+__pycache__/
+*.py[cod]
+.venv/
+.env
+*.log
+*.pt
+*.bin
+*.safetensors
+models/
+results/*.jsonl
+results/*.csv
+results/*.txt
+!results/.gitkeep
+data/train.jsonl
+data/train.sha256

@@ -1,0 +1,43 @@
+{
+  "tests": {
+    "command": "python -m pytest -q",
+    "passed": 5,
+    "failed": 0,
+    "status": "verified"
+  },
+  "nacl": {
+    "command": "python tools/nacl_sim.py --check network/nacl.json network/packets_sample.jsonl",
+    "correct": 6,
+    "total": 6,
+    "status": "verified"
+  },
+  "dataset_audit": {
+    "pool_records": 3000,
+    "pool_unique_ids": 3000,
+    "validation_records": 100,
+    "validation_unique_ids": 100,
+    "pool_validation_id_overlap": 0,
+    "pool_sha256": "3470398860500fabcf360debda8fb0e7a8a6ef9f552bc0341b5f3648e335f29a",
+    "validation_sha256": "707739170f96f103cbcc41485f92cc4ddf4af903c3939ff717d1f8ccb884bd11"
+  },
+  "reflection": {
+    "file": "report/230101049.pdf",
+    "status": "generated handwriting-style reference; physical handwritten scan not verified"
+  },
+  "not_completed_or_not_verified": [
+    "full 3,000-command teacher labeling and cleaned training dataset",
+    "student model training, model/tokenizer artifact, loss history, and held-out evaluation",
+    "Docker image build and live API checks",
+    "Kubernetes deployment, HPA, rollout, rollback, and recovery tests",
+    "Locust load test and measured performance/resource outputs",
+    "actual GitHub repository push, CI run, Release assets, and final tag"
+  ],
+  "environment": {
+    "docker": false,
+    "kubectl": false,
+    "k3d": false,
+    "helm": false,
+    "ollama": false,
+    "training_data_present": false
+  }
+}

@@ -1,0 +1,48 @@
+name: validation
+on:
+  push:
+  pull_request:
+  workflow_dispatch:
+
+jobs:
+  checks:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - run: pip install -r requirements-dev.txt
+      - name: Lint
+        run: ruff check worker tests scripts
+      - name: Unit tests
+        run: pytest -q
+      - name: Secret scan
+        uses: gitleaks/gitleaks-action@v2
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+  model-evaluation:
+    if: ${{ vars.MODEL_RELEASE_URL != '' }}
+    needs: checks
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Install CPU evaluation dependencies
+        run: |
+          pip install --index-url https://download.pytorch.org/whl/cpu torch==2.5.1
+          pip install transformers==4.47.1 safetensors==0.4.5
+      - name: Download published model release
+        run: |
+          mkdir -p models/release
+          curl -fL "${{ vars.MODEL_RELEASE_URL }}" -o /tmp/model-release.zip
+          python -c "import zipfile; zipfile.ZipFile('/tmp/model-release.zip').extractall('models/release')"
+      - name: Generate validation predictions
+        run: python scripts/evaluate_model.py --model models/release --output results/ci_predictions.jsonl
+      - name: Evaluation report
+        run: python tools/score.py results/ci_predictions.jsonl data/validation.jsonl --out results/ci_score.json
+      - name: JSON validity quality gate
+        run: python tools/score.py results/ci_predictions.jsonl data/validation.jsonl --min-validity 95

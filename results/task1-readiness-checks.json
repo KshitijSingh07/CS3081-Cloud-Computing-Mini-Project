@@ -1,0 +1,76 @@
+{
+  "audit_date": "2026-11-08",
+  "dataset": {
+    "commands_pool_records": 3000,
+    "validation_records": 100,
+    "two_shard_modulo_counts": [1500, 1500],
+    "unique_pool_ids": 3000,
+    "pool_validation_id_overlap": 0,
+    "pool_validation_text_overlap": 0,
+    "partition_check": "passed"
+  },
+  "ollama": {
+    "api_tags_check": "passed",
+    "model": "phi3.5:latest",
+    "one_real_command_smoke": "passed",
+    "smoke_output": "teacher-smoke.jsonl"
+  },
+  "worker_mock_checks": {
+    "concurrency": "passed in prior audit; peak 3 concurrent mocked calls; 8 ordered output rows",
+    "retry_transient_failure": "passed; succeeded on call 2",
+    "retry_persistent_failure": "passed; stopped after 3 attempts",
+    "record_failure_output": "passed; preserved original ID and text, emitted ordered error row, exited 1, wrote shard log"
+  },
+  "resume_support": {
+    "valid_label_reuse": "tested; exact source ID, text, and schema required",
+    "prior_output_and_interrupted_checkpoint_combined": "tested; later prior valid records retained",
+    "prior_partial_attempt_import": "tested",
+    "failed_record_retry": "tested",
+    "validation_feedback_retry": "tested with mocked response sequence",
+    "repeated_validation_failure": "tested; stops after the correction retry returns the identical error, avoiding redundant calls",
+    "overwrite_protection": "tested; existing output remains unchanged without RESUME_LABELING=1",
+    "live_resume_run": "active under one worker with 768 MiB memory stop; see results/teacher-label-attempt-02/run-resume-monitor.log"
+  },
+  "s3": {
+    "verified": true,
+    "container_image": "chrislusf/seaweedfs:3.80",
+    "bucket_object_check": "passed; datasets and models buckets created; command pool upload/download SHA256 matched",
+    "worker_s3_read_upload": "passed in one-row smoke; original pool hash unchanged; saved genuine C0001 label reused",
+    "evidence": ["results/s3-integration-check.json", "results/s3-integration-check.log", "results/s3-worker-integration-check.json", "results/s3-worker-integration-check.log", "results/seaweedfs-s3-worker-smoke/"],
+    "command_pool_round_trip": {
+      "object_size_bytes": 197541,
+      "source_sha256": "3470398860500fabcf360debda8fb0e7a8a6ef9f552bc0341b5f3648e335f29a",
+      "download_sha256": "3470398860500fabcf360debda8fb0e7a8a6ef9f552bc0341b5f3648e335f29a",
+      "match": true
+    },
+    "worker_smoke": "one-row S3 read/upload passed; genuine C0001 label reused; source hash unchanged; uploaded object matched local output",
+    "container_after_test": "stopped and removed; no host volume used"
+  },
+  "full_labeling_run": {
+    "approved": true,
+    "status": "stopped_for_memory_pressure; partial outputs preserved",
+    "initial_available_ram_mib": 2887,
+    "lowest_observed_available_ram_mib": 336,
+    "partial_rows": {"shard_0": 13, "shard_1": 3},
+    "worker_error_rows": {"shard_0": 0, "shard_1": 1},
+    "partial_output_directory": "teacher-label-attempt-01-partial",
+    "note": "Stopped both workers after available RAM fell below 400 MiB. One real row (C0004) failed all retries because the teacher returned a date slot not copied from the command. No complete label dataset was produced.",
+    "attempt_02": {
+      "status": "resumed_in_progress",
+      "max_concurrent_requests": 1,
+      "shard_0_rows_at_pause": 246,
+      "shard_0_valid_labels_at_pause": 205,
+      "shard_0_worker_errors_at_pause": 41,
+      "measured_rows_per_minute": 6.14,
+      "estimated_remaining_hours": 7.58,
+      "resume_script": "scripts/run_labeling_resume.ps1",
+      "monitor_log": "results/teacher-label-attempt-02/run-resume-monitor.log",
+      "output_directory": "results/teacher-label-attempt-02"
+    }
+  },
+  "validation_training_data": {
+    "data_train_jsonl_exists": false,
+    "validation_file_preserved_separately": true,
+    "validation_examples_used_for_training": false
+  }
+}

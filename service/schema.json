@@ -1,0 +1,18 @@
+{
+  "keys": [
+    "intent",
+    "date",
+    "time",
+    "place"
+  ],
+  "intents": [
+    "alarm_set",
+    "alarm_query",
+    "calendar_set",
+    "calendar_query",
+    "calendar_remove",
+    "weather_query",
+    "datetime_query",
+    "recommendation_events"
+  ]
+}
